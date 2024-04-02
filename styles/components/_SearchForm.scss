@@ -22,5 +22,9 @@
         background-repeat: no-repeat;
         background-size: 1.6rem;
         background-position: 97% 50%;
+
+        &::placeholder {
+            color: #a3a3a39a
+        }
     }
 }
