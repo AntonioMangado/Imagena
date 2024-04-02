@@ -1,0 +1,27 @@
+.footer {
+    background-color: #424242;
+    padding: 1rem 2.5rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+
+    &__socials {
+        display: flex;
+        gap: 1rem;
+
+        i {
+            color: rgba(255, 255, 255, 0.742);
+
+            &:hover {
+                color: white;
+            }
+        }
+    }
+
+    &__copyright {
+        font-size: 0.8rem;
+        font-weight: 300;
+    }
+}
