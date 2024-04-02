@@ -1,0 +1,24 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    background-color: rgba(80, 78, 78, 0.986);
+    color: #fff;
+
+    &__logo {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: #fff;
+        cursor: pointer;
+
+            &:hover {
+                color: #f1f1f1;
+                text-decoration: underline;
+            }
+    }
+}
