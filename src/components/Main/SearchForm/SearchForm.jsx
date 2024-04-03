@@ -1,41 +1,15 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getImagesData, getImagesStatus, getImagesError } from '../../../features/images/imagesSlice.js';
+import { useDispatch } from "react-redux";
 import { getQueryImagesThunk } from "../../../features/images/imagesThunk";
-
 
 const SearchForm = () => {
 
   const dispatch = useDispatch();
-  const imagesData = useSelector(getImagesData);
-  const imagesStatus = useSelector(getImagesStatus);
-  const imagesError = useSelector(getImagesError)
-  const [imageList, setImageList] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const query = e.target[0].value;
     dispatch(getQueryImagesThunk(query))
   }
-
-  // useEffect(() => {
-  //   if (imagesStatus === "idle") {
-  //     dispatch(getImagesThunk());
-  //   } else if (imagesStatus === "pending") {
-  //     setLoading(true);
-  //   } else if (imagesStatus === "fulfilled") {
-  //     setLoading(false);
-  //     let data = [];
-  //     imagesData.forEach((image) => {
-  //       data.push(image);
-  //     })
-  //     setImageList(data);
-  //   } else if (imagesStatus === "rejected") {
-  //     setLoading(false);
-  //     console.log(imagesError)
-  //   }
-  // }, [dispatch, imagesData, imagesStatus, imagesError]);
 
   return (
   <section className="search">
