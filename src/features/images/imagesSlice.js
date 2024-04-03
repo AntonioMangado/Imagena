@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getImagesThunk } from './imagesThunk.js'
+import { getImagesThunk, getQueryImagesThunk } from './imagesThunk.js'
 
 export const imagesSlice = createSlice({
     name: "images",
@@ -18,6 +18,14 @@ export const imagesSlice = createSlice({
             state.status = "rejected";
             state.error = action.error.message;
         }).addCase(getImagesThunk.fulfilled, (state, action) => {
+            state.status = "fulfilled";
+            state.data = action.payload;
+        }).addCase(getQueryImagesThunk.pending, (state, action) => {
+            state.status = "pending";
+        }).addCase(getQueryImagesThunk.rejected, (state, action) => {
+            state.status = "rejected";
+            state.error = action.error.message;
+        }).addCase(getQueryImagesThunk.fulfilled, (state, action) => {
             state.status = "fulfilled";
             state.data = action.payload;
         })

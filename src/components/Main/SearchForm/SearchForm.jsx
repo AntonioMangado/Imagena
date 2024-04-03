@@ -1,17 +1,23 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getImagesData, getImagesStatus, getImagesError } from '../../../features/images/imagesSlice.js';
-import { getImagesThunk } from "../../../features/images/imagesThunk";
+import { getQueryImagesThunk } from "../../../features/images/imagesThunk";
 
 
 const SearchForm = () => {
 
-  // const dispatch = useDispatch();
-  // const imagesData = useSelector(getImagesData);
-  // const imagesStatus = useSelector(getImagesStatus);
-  // const imagesError = useSelector(getImagesError)
-  // const [imageList, setImageList] = useState([]);
-  // const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const imagesData = useSelector(getImagesData);
+  const imagesStatus = useSelector(getImagesStatus);
+  const imagesError = useSelector(getImagesError)
+  const [imageList, setImageList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const query = e.target[0].value;
+    dispatch(getQueryImagesThunk(query))
+  }
 
   // useEffect(() => {
   //   if (imagesStatus === "idle") {
@@ -35,7 +41,7 @@ const SearchForm = () => {
   <section className="search">
     <h1 className="search__title">Unbelievable images to download</h1>
     <p className="search__text">Over 1 million images shared by our talented community.</p>
-    <form className="search__form">
+    <form className="search__form" onSubmit={handleSubmit}>
       <input type="text" className="search__input" placeholder="Search images" />
     </form>
   </section>

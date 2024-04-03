@@ -6,3 +6,9 @@ export const getImagesThunk = createAsyncThunk("images/getImages", async () => {
     const json = await request.json();
     return json;
 })
+
+export const getQueryImagesThunk = createAsyncThunk("images/getQueryImages", async (query) => {
+    const request = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${query}&client_id=${import.meta.env.VITE_ACCESS_KEY}`);
+    const json = await request.json();
+    return json.results;
+})
