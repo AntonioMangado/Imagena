@@ -14,6 +14,12 @@ const ImgGallery = () => {
   const [imageList, setImageList] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const renderCards = () => {
+    return imageList.map((image, index) => {
+      return <Card key={index} source={image.source} description={image.alt} />
+    })
+  }
+
   useEffect(() => {
     if (imagesStatus === "idle") {
       dispatch(getImagesThunk());
@@ -23,7 +29,7 @@ const ImgGallery = () => {
       setLoading(false);
       let data = [];
       imagesData.forEach((image) => {
-        data.push(image);
+        data.push({source: image.urls.regular, alt: image.slug});
       })
       setImageList(data);
     } else if (imagesStatus === "rejected") {
@@ -38,7 +44,7 @@ const ImgGallery = () => {
     {loading ? 
     <p>Loading...</p> 
       : 
-    <Card />}
+    renderCards()}
   </section>);
 };
 
