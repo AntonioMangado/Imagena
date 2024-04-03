@@ -17,3 +17,8 @@ export const favoritesSlice = createSlice({
         }
     }
 })
+
+export const { addFavorite, removeFavorite } = favoritesSlice.actions;
+export const getFavoritesData = state => state.favorites.data;
+export const getFavoritesStatus = state => state.favorites.status;
+export const getFavoritesError = state => state.favorites.error;
