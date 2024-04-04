@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getImagesData, getImagesStatus, getImagesError } from '../../../features/images/imagesSlice.js';
+import { addFavorite, removeFavorite, getFavoritesData, getFavoritesStatus, getFavoritesError } from "../../../features/favorites/favoritesSlice.js";
 import { getImagesThunk } from "../../../features/images/imagesThunk";
 import Card from "./Card";
 
@@ -16,7 +17,7 @@ const ImgGallery = () => {
 
   const renderCards = () => {
     return imageList.map((image, index) => {
-      return <Card key={index} source={image.source} description={image.alt} />
+      return <Card key={index} source={image.source} description={image.alt} id={image.id} height={image.height} width={image.width} likes={image.likes} created={image.created}/>
     })
   }
 
@@ -30,7 +31,7 @@ const ImgGallery = () => {
       let data = [];
       console.log(imagesData)
       imagesData.forEach((image) => {
-        data.push({source: image.urls.regular, alt: image.slug});
+        data.push({source: image.urls.regular, alt: image.alt_description, id: image.id, height: image.height, width: image.width, likes: image.likes, created: image.created_at});
       })
       setImageList(data);
     } else if (imagesStatus === "rejected") {
