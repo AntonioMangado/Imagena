@@ -1,11 +1,27 @@
-import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPencil } from "@fortawesome/free-solid-svg-icons";
+import { editImageDescription } from "../../../../../features/images/imagesSlice.js";
 
-const ExpandedView = ({source, description, height, width, likes, created, setIsExpanded}) => {
+const ExpandedView = ({source, description, height, width, likes, created, id, setIsExpanded}) => {
+
+  const [isBeingEdited, setIsBeingEdited] = useState(false);
+  const dispatch = useDispatch();
 
   const handleExpand = () => {
     setIsExpanded(false);
+  }
+
+  const handleEditDescription = () => {
+    setIsBeingEdited(true);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const description = e.target[0].value;
+    dispatch(editImageDescription({id, description}));
+    setIsBeingEdited(false);
   }
 
   // const handleKeyDown = (e) => {
@@ -28,15 +44,18 @@ const ExpandedView = ({source, description, height, width, likes, created, setIs
       
       <div className="card-info">
         <div className="card-info__description">
-          <p>{description}.</p>
-          <FontAwesomeIcon icon={faPencil} />
+          <form className={isBeingEdited ? "active" : "hidden"} onSubmit={handleSubmit}>
+            <input type="text" placeholder={description}/>
+          </form>
+          <p className={!isBeingEdited ? "" : "hidden"}>{description}.</p>
+          <FontAwesomeIcon icon={faPencil} onClick={handleEditDescription}/>
         </div>
 
         <div className="card-info__stats">
-          <p>Height: {height}px</p>
-          <p>Width: {width}px</p>
-          <p>Likes: {likes}</p>
-          <p>Created: {created}</p>
+          <p><b>Height:</b> {height}px</p>
+          <p><b>Width:</b> {width}px</p>
+          <p><b>Likes:</b> {likes}</p>
+          <p><b>Created:</b> {created}</p>
         </div>
       </div>
     </div>

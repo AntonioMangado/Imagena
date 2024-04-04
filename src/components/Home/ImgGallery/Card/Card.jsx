@@ -23,7 +23,7 @@ const Card = ({ source, description, id, height, width, likes, created }) => {
   return (
     <>
     {isExpanded ? (
-      <ExpandedView source={source} description={description} height={height} width={width} likes={likes} created={created} setIsExpanded={setIsExpanded}/>
+      <ExpandedView source={source} description={description} height={height} width={width} likes={likes} created={created} id={id} setIsExpanded={setIsExpanded}/>
     ) : (
       <article className="img-gallery__card" >
         <img src={source} alt={description} onClick={handleExpand}/>
