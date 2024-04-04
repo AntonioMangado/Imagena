@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faPencil } from "@fortawesome/free-solid-svg-icons";
 
 const ExpandedView = ({source, description, height, width, likes, created, setIsExpanded}) => {
 
@@ -8,16 +8,18 @@ const ExpandedView = ({source, description, height, width, likes, created, setIs
     setIsExpanded(false);
   }
 
-  const handleKeyDown = (e) => {
-    console.log(e.key);
-    if (e.key === "Escape") {
-      console.log("Escape key pressed");
-      setIsExpanded(false);
-    }
-  }
+  // const handleKeyDown = (e) => {
+  //   console.log(e.key);
+  //   if (e.key === "Escape") {
+  //     console.log("Escape key pressed");
+  //     setIsExpanded(false);
+  //   }
+  // }
+
+  // onKeyDown={handleKeyDown} tabIndex="0"
 
   return (
-  <article className="img-gallery__expanded-card" onKeyDown={handleKeyDown} onClick={handleExpand}>
+  <article className="img-gallery__expanded-card">
     <div className="expanded-card__container">
       <div className="card-photo">
         <img src={source} alt={description} />
@@ -25,7 +27,11 @@ const ExpandedView = ({source, description, height, width, likes, created, setIs
       </div>
       
       <div className="card-info">
-        <p>{description}.</p>
+        <div className="card-info__description">
+          <p>{description}.</p>
+          <FontAwesomeIcon icon={faPencil} />
+        </div>
+
         <div className="card-info__stats">
           <p>Height: {height}px</p>
           <p>Width: {width}px</p>

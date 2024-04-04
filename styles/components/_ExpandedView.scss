@@ -13,12 +13,13 @@
     
     .expanded-card__container {
         background-color: white;
-        height: 70%;
+        height: 85%;
         display: flex;
         justify-content: space-between;
 
         .card-photo {
             position: relative;
+            width: 70%;
 
             img {
                 width: 100%;
@@ -43,9 +44,15 @@
             justify-content: space-between;
             
             p {
+
                 &::first-letter {
                     text-transform: uppercase;
                 }
+            }
+
+            svg {
+                cursor: pointer;
+                margin-top: 0.8rem;
             }
 
             &__stats {
