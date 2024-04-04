@@ -2,7 +2,7 @@ import React from "react";
 import SearchForm from "./SearchForm";
 import ImgGallery from "./ImgGallery";
 
-const Main = () => {
+const Home = () => {
   return (
   <main>
     <SearchForm />
@@ -11,4 +11,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Home;

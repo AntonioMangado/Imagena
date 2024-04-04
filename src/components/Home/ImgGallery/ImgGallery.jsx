@@ -17,7 +17,7 @@ const ImgGallery = () => {
 
   const renderCards = () => {
     return imageList.map((image, index) => {
-      return <Card key={index} source={image.source} description={image.alt} id={image.id} />
+      return <Card key={index} source={image.source} description={image.alt} id={image.id} height={image.height} width={image.width} likes={image.likes} created={image.created}/>
     })
   }
 
@@ -31,7 +31,7 @@ const ImgGallery = () => {
       let data = [];
       console.log(imagesData)
       imagesData.forEach((image) => {
-        data.push({source: image.urls.regular, alt: image.slug, id: image.id});
+        data.push({source: image.urls.regular, alt: image.alt_description, id: image.id, height: image.height, width: image.width, likes: image.likes, created: image.created_at});
       })
       setImageList(data);
     } else if (imagesStatus === "rejected") {

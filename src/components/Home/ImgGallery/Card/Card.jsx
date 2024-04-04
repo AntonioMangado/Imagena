@@ -5,13 +5,13 @@ import { faHeart, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { addFavorite, removeFavorite, getFavoritesData, getFavoritesStatus, getFavoritesError } from "../../../../features/favorites/favoritesSlice.js";
 
 
-const Card = ({ source, description, id }) => {
+const Card = ({ source, description, id, height, width, likes, created }) => {
 
   const dispatch = useDispatch();
   const [favorite, setFavorite] = useState(false);
 
   const handleClick = () => {
-    dispatch(addFavorite(id))
+    dispatch(addFavorite({id, source, description, height, width, likes, created}))
   }
 
   return (
