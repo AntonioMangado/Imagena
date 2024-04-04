@@ -14,7 +14,7 @@ export const favoritesSlice = createSlice({
             state.data = [...state.data, action.payload]
         },
         removeFavorite: (state, action) => {
-            state.data = state.data.filter(favorite => favorite.id !== action.payload.id)
+            state.data = state.data.filter(favorite => favorite.id !== action.payload)
         }
     },
     extraReducers: (builder) => {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faDownload } from "@fortawesome/free-solid-svg-icons";
-import { addFavorite, removeFavorite, getFavoritesData, getFavoritesStatus, getFavoritesError } from "../../../../features/favorites/favoritesSlice.js";
+import { addFavorite } from "../../../../features/favorites/favoritesSlice.js";
 
 
 const Card = ({ source, description, id, height, width, likes, created }) => {
