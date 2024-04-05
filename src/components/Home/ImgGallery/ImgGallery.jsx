@@ -29,7 +29,6 @@ const ImgGallery = () => {
     } else if (imagesStatus === "fulfilled") {
       setLoading(false);
       let data = [];
-      console.log(imagesData)
       imagesData.forEach((image) => {
         data.push({source: image.urls.regular, alt: image.alt_description, id: image.id, height: image.height, width: image.width, likes: image.likes, created: image.created_at});
       })

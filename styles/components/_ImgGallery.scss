@@ -4,6 +4,22 @@
     gap: 1rem;
     justify-content: center;
     padding: 1rem 1.5rem;
+    position: relative;
+
+    &.favorites {
+        padding-top: 5rem;
+    }
+
+    &__sort {
+        position: absolute;
+        top: 1rem;
+        right: 2rem;
+        width: 10rem;
+        border: 1px solid #00000030;
+        padding: 0.5rem 0;
+        font-size: 1rem;
+        color: #a5a5a5;
+    }
 }
 
 @media screen and (min-width: 705px) {
@@ -14,6 +30,10 @@
         width: 709px;
         margin: 0 auto;
         padding: 2rem 1.5rem;
+
+        &__sort {
+            width: 15rem;
+        }
 
         img {
             width: 100%;
@@ -29,6 +49,10 @@
         column-gap: 1em;
         width: 1071px;
         margin: 0 auto;
+
+        &__sort {
+            width: 20rem;
+        }
 
         img {
             width: 100%;
