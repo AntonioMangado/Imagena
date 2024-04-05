@@ -42,8 +42,8 @@ const FavoritesCard = ({source, description, id, height, width, likes, created})
     <ExpandedView source={source} description={description} height={height} width={width} likes={likes} created={created} id={id} setIsExpanded={setIsExpanded}/>
   ) : (
     <>
-      <ToastContainer />
       <article className="img-gallery__card">
+        <ToastContainer />
         <img src={source} alt={description} onClick={handleExpand}/>
         <FontAwesomeIcon icon={faTrashCan} size="xl" style={{color: "#f2f2f2",}} onClick={handleClick}/>
         <FontAwesomeIcon icon={faDownload} size="xl" style={{color: "#f2f2f2",}} onClick={handleDownload} className="download"/>

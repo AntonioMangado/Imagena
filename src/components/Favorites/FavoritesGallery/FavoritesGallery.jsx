@@ -1,16 +1,12 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { removeFavorite, getFavoritesData, getFavoritesStatus, getFavoritesError } from "../../../features/favorites/favoritesSlice.js";
+import { useSelector } from "react-redux";
+import { getFavoritesData } from "../../../features/favorites/favoritesSlice.js";
 import FavoritesCard from "./FavoritesCard";
-import { getFavoriteThunk } from "../../../features/favorites/favoritesThunk.js";
-
 
 const FavoritesGallery = () => {
 
-  const dispatch = useDispatch();
   const favData = useSelector(getFavoritesData);
-  const favStatus = useSelector(getFavoritesStatus);
-  const favError = useSelector(getFavoritesError)
+  const [sortType, setSortType] = useState("");
   const [imageList, setImageList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -20,19 +16,52 @@ const FavoritesGallery = () => {
     })
   }
 
+  const handleSort = (e) => {
+    setSortType(e.target.value);
+  }
+
   useEffect(() => {
-    console.log(favData)
     setImageList(favData);
     setIsLoading(false);
   }, [favData]);
 
+  useEffect(() => {
+    switch (sortType) {
+      case "width":
+        setImageList([...imageList].sort((a, b) => a.width - b.width));
+        break;
+      case "height":
+        setImageList([...imageList].sort((a, b) => a.height - b.height));
+        break;
+      case "likes":
+        setImageList([...imageList].sort((a, b) => b.likes - a.likes));
+        break;
+      case "old":
+        setImageList([...imageList].sort((a, b) => new Date(b.created) - new Date(a.created)));
+        break;
+      default:
+        setImageList(favData);
+        break;
+    }
+  }, [sortType]);
+
 
   return (
-  <section className="img-gallery">
+  <section className="img-gallery favorites">
     {isLoading ? 
-    <p>Loading...</p> 
+    <p>Loading...</p>
       : 
-    renderCards()}
+    <>
+    <select className="img-gallery__sort" onChange={handleSort} value={sortType}>
+      <option value="" selected disabled>Sort by</option>
+      <option value="width">Width</option>
+      <option value="height">Height</option>
+      <option value="likes">Most liked</option>
+      <option value="old">Newest</option>
+    </select> 
+    {renderCards()}
+    </>
+    }
   </section>);
 };
 
