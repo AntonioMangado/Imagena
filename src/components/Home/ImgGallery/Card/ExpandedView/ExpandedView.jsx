@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPencil } from "@fortawesome/free-solid-svg-icons";
 import { editImageDescription } from "../../../../../features/images/imagesSlice.js";
+import { editFavoriteDescription } from "../../../../../features/favorites/favoritesSlice.js";
 
 const ExpandedView = ({source, description, height, width, likes, created, id, setIsExpanded}) => {
 
@@ -21,6 +22,7 @@ const ExpandedView = ({source, description, height, width, likes, created, id, s
     e.preventDefault();
     const description = e.target[0].value;
     dispatch(editImageDescription({id, description}));
+    dispatch(editFavoriteDescription({id, description}));
     setIsBeingEdited(false);
   }
 

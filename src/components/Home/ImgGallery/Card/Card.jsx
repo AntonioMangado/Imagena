@@ -9,7 +9,6 @@ import ExpandedView from "./ExpandedView/ExpandedView.jsx";
 const Card = ({ source, description, id, height, width, likes, created }) => {
 
   const dispatch = useDispatch();
-  const [favorite, setFavorite] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleExpand = () => {
