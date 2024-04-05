@@ -1,16 +1,11 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { removeFavorite, getFavoritesData, getFavoritesStatus, getFavoritesError } from "../../../features/favorites/favoritesSlice.js";
+import { useSelector } from "react-redux";
+import { getFavoritesData } from "../../../features/favorites/favoritesSlice.js";
 import FavoritesCard from "./FavoritesCard";
-import { getFavoriteThunk } from "../../../features/favorites/favoritesThunk.js";
-
 
 const FavoritesGallery = () => {
 
-  const dispatch = useDispatch();
   const favData = useSelector(getFavoritesData);
-  const favStatus = useSelector(getFavoritesStatus);
-  const favError = useSelector(getFavoritesError)
   const [imageList, setImageList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,7 +16,6 @@ const FavoritesGallery = () => {
   }
 
   useEffect(() => {
-    console.log(favData)
     setImageList(favData);
     setIsLoading(false);
   }, [favData]);
