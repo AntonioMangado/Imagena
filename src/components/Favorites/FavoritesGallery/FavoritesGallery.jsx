@@ -16,7 +16,7 @@ const FavoritesGallery = () => {
 
   const renderCards = () => {
     return imageList.map((image, index) => {
-      return <FavoritesCard key={index} source={image.source} description={image.alt} id={image.id} />
+      return <FavoritesCard key={index} source={image.source} description={image.description} id={image.id} height={image.height} width={image.width} likes={image.likes} created={image.created} />
     })
   }
 

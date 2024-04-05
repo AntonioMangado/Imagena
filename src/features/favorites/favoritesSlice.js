@@ -13,6 +13,13 @@ export const favoritesSlice = createSlice({
         addFavorite: (state, action) => {
             state.data = [...state.data, action.payload]
         },
+        editFavoriteDescription: (state, action) => {
+            const { id, description } = action.payload;
+            const image = state.data.find(image => image.id === id);
+            if (image) {
+                image.description = description;
+            }
+        },
         removeFavorite: (state, action) => {
             state.data = state.data.filter(favorite => favorite.id !== action.payload)
         }
@@ -30,7 +37,7 @@ export const favoritesSlice = createSlice({
     }
 })
 
-export const { addFavorite, removeFavorite } = favoritesSlice.actions;
+export const { addFavorite, editFavoriteDescription, removeFavorite } = favoritesSlice.actions;
 export const getFavoritesData = state => state.favorites.data;
 export const getFavoritesDataToRender = state => state.favorites.dataToRender;
 export const getFavoritesStatus = state => state.favorites.status;
