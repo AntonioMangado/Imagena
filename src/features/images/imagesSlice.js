@@ -9,7 +9,13 @@ export const imagesSlice = createSlice({
         error: null
     },
     reducers: {
-
+        editImageDescription: (state, action) => {
+            const { id, description } = action.payload;
+            const image = state.data.find(image => image.id === id);
+            if (image) {
+                image.alt_description = description;
+            }
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(getImagesThunk.pending, (state, action) => {
@@ -32,6 +38,7 @@ export const imagesSlice = createSlice({
     }
 });
 
+export const { editImageDescription } = imagesSlice.actions;
 export const getImagesData = (state) => state.images.data;
 export const getImagesStatus = (state) => state.images.status;
 export const getImagesError = (state) => state.images.error;
